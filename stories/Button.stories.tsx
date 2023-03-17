@@ -2,10 +2,12 @@ import React, { FC } from "react";
 import { ComponentMeta, Story } from "@storybook/react";
 import { Button as PrimeButton, ButtonProps } from "primereact/button";
 
+// Custom Props
 interface CustomButtonProps extends ButtonProps {
 	childtext?: any;
 }
 
+// Our template
 export const Default: FC<CustomButtonProps> = (props) => (
 	<PrimeButton {...props}>
 		{props.children} {props.childtext}
@@ -16,15 +18,22 @@ export default {
 	title: "Button",
 	component: Default,
 	argTypes: {
+		// For now we can't bind children from the ui so we gonna disable it. If you need to use children you can look the WithChild example below.
 		children: {
-			disabled: true
+			control: false
 		},
-		childtext: { type: "string", defaultValue: "" },
+		childtext: {
+			type: "string",
+			table: {
+				defaultValue: "HI! I'm Child text"
+			}
+		},
+		// Log functions
 		onClick: { action: "clicked" },
 		onFocus: { action: "focused" },
 		onBlur: { action: "blurred" }
 	}
-} as ComponentMeta<typeof PrimeButton>;
+} as ComponentMeta<typeof Default>;
 
 export const SuccessButton = Default.bind({}) as Story<CustomButtonProps>;
 

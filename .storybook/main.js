@@ -18,7 +18,10 @@ module.exports = {
 		checkOptions: {},
 		reactDocgen: "react-docgen-typescript",
 		reactDocgenTypescriptOptions: {
+			allowSyntheticDefaultImports: false,
+			esModuleInterop: false,
 			shouldExtractLiteralValuesFromEnum: true,
+			shouldRemoveUndefinedFromOptional: true,
 			propFilter: (prop) => {
 				return prop.parent
 					? /primereact/.test(prop.parent.fileName) ||
